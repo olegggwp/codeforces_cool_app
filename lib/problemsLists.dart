@@ -121,15 +121,14 @@ class WeekListData {
 
 Future<WeekListData> LoadData() async {
   WeekListData wd = new WeekListData();
-  bool isOk = true;
   print("start");
   await User.loadWeekList();
   print("loadingWeekList ended.");
   if(!Problemset.loaded)
     await Problemset.getProblemset();
   print("loading problem set ended.");
-  if(!Submissions.loaded)
-    await Submissions.checkSubs();
+  // if(!Submissions.loaded)
+  await Submissions.checkSubs();
   print("loading submissions ended.");
   wd.pr_list = [];
   for (String pr in User.week_list) {

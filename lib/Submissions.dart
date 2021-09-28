@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:go_hard/Problemset.dart';
 import 'package:http/http.dart' as http;
 
+import 'maindata.dart';
+
 abstract class Submissions {
   static late List<Submission> list_sub = [];
   static bool loaded = false;
@@ -15,8 +17,9 @@ abstract class Submissions {
   }
 
   static Future<String> checkSubs() async {
+    await User.loadHandle();
     final response = await http.get(Uri.parse(
-        'https://codeforces.com/api/user.status?handle=olegBelyaev&from=1'));
+        'https://codeforces.com/api/user.status?handle=' + User.handle + '&from=1'));
     if (response.statusCode == 200) {
       //  OK
       list_sub = [];

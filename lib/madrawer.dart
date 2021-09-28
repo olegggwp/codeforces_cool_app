@@ -30,7 +30,7 @@ class CoolDrawer extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    User.name,
+                    User.handle,
                     style: TextStyle(fontSize: 14),
                   )
                 ],

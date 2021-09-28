@@ -19,7 +19,7 @@ class SettingsLayout extends StatelessWidget {
     );
   }
 }
-//
+
 class NameField extends StatefulWidget {
   @override
   createState() => new NameFieldState();
@@ -42,7 +42,7 @@ class NameFieldState extends State<NameField> {
               Expanded(
                   child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(User.name,
+                child: Text(User.handle,
                     style: TextStyle(
                       fontSize: 18,
                     )),
@@ -69,9 +69,10 @@ class NameFieldState extends State<NameField> {
                 child: TextFormField(
                   style: TextStyle(fontSize: 18),
                   decoration: InputDecoration(hintText: "Type here"),
-                  initialValue: User.name,
+                  initialValue: User.handle,
                   onFieldSubmitted: (String submited) {
-                    User.name = submited;
+                    User.handle = submited;
+                    User.setHandle();
                     setState(() {
                       editingMode = !editingMode;
                     });
@@ -83,7 +84,8 @@ class NameFieldState extends State<NameField> {
               )),
               IconButton(
                   onPressed: () {
-                    if (tempname != "") User.name = tempname;
+                    if (tempname != "") User.handle = tempname;
+                    User.setHandle();
                     setState(() {
                       editingMode = !editingMode;
                     });
@@ -108,6 +110,9 @@ class RateFieldState extends State<RateField> {
 
   @override
   Widget build(BuildContext context) {
+    User.loadSeriesRating().then((_){
+      setState(() {});
+    });
     if (!this.editingMode) {
       return Padding(
           padding: EdgeInsets.fromLTRB(8.0, 10.0, 10.0, 8.0),
@@ -124,6 +129,7 @@ class RateFieldState extends State<RateField> {
                   )),
               IconButton(
                   onPressed: () {
+
                     setState(() {
                       editingMode = !editingMode;
                     });
@@ -148,7 +154,7 @@ class RateFieldState extends State<RateField> {
                       onFieldSubmitted: (String submited) {
                         try {
                           User.series_rating = int.parse(submited);
-                          User.loadSeriesRating();
+                          User.setSeriesRating();
                         } catch (FormatException){};
                         setState(() {
                           editingMode = !editingMode;
@@ -164,7 +170,7 @@ class RateFieldState extends State<RateField> {
                     if (tempname != ""){
                       try {
                           User.series_rating = int.parse(tempname);
-                          User.loadSeriesRating();
+                          User.setSeriesRating();
                         } catch (FormatException){};
                     }
                     setState(() {
