@@ -105,7 +105,7 @@ class RateField extends StatefulWidget {
 class RateFieldState extends State<RateField> {
   bool editingMode = false;
   Color? nameclr = Colors.green[100];
-
+  String tempname = "";
   RateFieldState({this.editingMode = false});
 
   @override
@@ -138,7 +138,6 @@ class RateFieldState extends State<RateField> {
             ],
           ));
     } else {
-      String tempname = "";
       return Padding(
           padding: EdgeInsets.fromLTRB(8.0, 10.0, 10.0, 8.0),
           child: Row(

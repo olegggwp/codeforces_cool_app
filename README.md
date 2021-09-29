@@ -6,3 +6,5 @@ Flutter app that helps you keep progress.
 
 Just install Flattern and Dart in your ide and run on your phone
 and change URLs
+or
+check build/
