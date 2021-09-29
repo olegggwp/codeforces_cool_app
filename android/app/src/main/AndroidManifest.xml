@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.go_hard">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="go_hard"
         android:icon="@mipmap/ic_launcher">
